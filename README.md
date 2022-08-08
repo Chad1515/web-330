@@ -1,2 +1,2 @@
 # web-330
-JavaScript II
+WEB-330 Enterprise JavaScript II
