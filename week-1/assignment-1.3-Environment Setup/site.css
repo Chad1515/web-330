@@ -1,0 +1,118 @@
+/**
+==============================================
+; Title: Assignment 1.3 Landing Page 
+; Author: Professor Richard Krasso
+; Modified by: Chad ONeal
+; Date: 08/11/2022 
+; Description: Web-330 Landing page with links to all assignments and projects.
+==============================================
+*/
+
+/**
+* font family styling
+*/
+body {
+    font-family: 'Oswald', Verdana, Arial, sans-serif;
+}
+
+
+/**
+* icon mode:hover styling
+*/
+icon-mode:hover {
+    cursor: pointer;
+}
+
+/**
+* icon-text styling
+*/
+#icon-text {
+    padding-left: 10px;
+}
+
+/**
+* container styling
+*/
+#container {
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    
+    
+}
+
+/**
+* toggle switch styling
+*/
+.pull-right {
+    float: right;
+    margin-top: -2%;
+}
+
+/** 
+ * assign container styling 
+*/
+.assign-container {
+    padding: 10px;
+}
+
+/** 
+* content styling 
+*/
+.assign-content {
+    width: 600px;
+    margin: 3% auto 0;
+}
+
+
+/** 
+* assign-results-text styling
+*/
+.assign-results-text {
+    text-align: center;
+    font-size: 28px;
+}
+
+/**
+* app-header styling 
+*/
+.app-header {
+    text-align: left;  
+    
+}
+
+/**
+* return-home anchor styling
+*/
+.return-home {
+    color: #4F3674;
+    text-decoration: none;
+}
+
+.return-home:hover {
+    background-color: #D6A800;
+    color: #4F3674;
+}
+
+.return-home:visited {
+    color: #3C275A
+}
+
+/**
+*form and form field stylings
+*/
+
+.form {
+    display: inline-grid;
+    grid-template-columns: auto;
+}
+
+.form-field {
+    padding: 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+
