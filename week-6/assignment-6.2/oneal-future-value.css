@@ -1,0 +1,46 @@
+/**
+==============================================
+; Title: Assignment 6.2 Future Value App
+; Author: Professor Richard Krasso
+; Modified by: Chad ONeal
+; Date: 09/12/2022
+; Description: css for future value app
+==============================================
+*/
+
+
+
+/* 
+* styling for danger text.
+*/
+
+.danger {
+    float: right;
+    color: #df546a;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-left: 28%;
+}
+
+.danger-right {
+    float: right;
+    color: #df546a;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-align: right;
+}
+
+/* 
+* styling for form labels. 
+*/
+.form-label {
+    display: inline-block;
+    padding-top: 1rem;
+    
+    
+}
+
+form {
+    width: 25%;
+}
+
