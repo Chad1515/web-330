@@ -1,0 +1,227 @@
+<!--
+==============================================
+; Title: Assignment 6.2 Future Value App
+; Author: Professor Richard Krasso
+; Modified by: Chad ONeal
+; Date: 09/12/2022
+; Description: HTML for future value app
+==============================================
+-->
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+    <head>
+
+        <META charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <META name="keywords" content="Calorie">
+
+    <!--page title-->
+    <title>WEB 330 - Enterprise JavaScript II</title>   
+
+    <!--css stylesheets-->
+    <link href="site.css" rel="stylesheet">
+    <link href="oneal-future-value.css" rel="stylesheet">
+    <link href="flex-layout.css" rel="stylesheet">
+
+    
+    <!--google fonts, gstatic fonts, cdn icons style sheets -->
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+
+
+    <!--body with light theme class-->
+    <body class="light-theme">
+        <div id="container">
+                
+            <!--icon tag for toggling between light and dark modes-->
+            <i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right" style="font-size: 28px;">
+    
+            <!--span tag with id: icon-text-->
+                <span id="icon-text"></span>
+            </i>
+
+        </div>
+        
+        <!--future value card title-->
+        <div class="app-header">Welcome to the Future Value App!</div>
+        <div class="assign-content">
+
+            <!--user input card-->
+            <div class="card">
+                <div class="card-title">Future Value Calculator</div>
+                <div class="card-content">
+
+                    <!--unordered list of errors-->
+                    <div class="row">
+                        <div class="col-12 danger" id="errorLog"></div>
+                    </div>
+
+                    <!--form for user input-->
+                    <div class="form">
+
+                        <!--monthly payment form-->
+                        <div class="row">
+                            <div class="col-5 form-field">Monthly Payment:</div>
+                            <input class="col-7 input form-field form-label" id="txtMonthlyPayment" type="text">
+                        </div>
+
+                        <!--interest rate form. -->
+                        <div class="row">
+                            <div class="col-5 form-field">Interest Rate:</div>
+                            <input class="col-7 input form-field form-label" id="txtYearlyRate" type="text">
+                        </div>
+
+                        <!--interest rate instruction-->
+                        <div class="row">
+                            <div class="col-12 danger-right" id="">Enter 11.1% as 11.1.</div>
+                        </div>
+                        
+
+                        <!--number of years(1-10) selection form-->
+                        <div class="row">
+                            <div class="col-5 form-field">Number of Years:</div>
+                            <select class="col-7 drop-down-menu" id="listNumOfYears">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+
+                        <!--button for calculation-->
+                        <div class="row">
+                            <div class=" form-field">
+                                <button class="btn btn-primary full-width" id="btnCalculate">Calculate</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <!--return anchor to landing page-->
+            <a class="return-home" href="https://chad1515.github.io/web-330/">Return</a>
+
+            <br><br>
+            
+            <!--card for results-->
+            <div class="card">
+
+                <!--todays date display-->
+                <div class="card-title">Calculation as of <span id="today"></span></div>
+
+                <!--display of results text -->
+                <div id="futureValue" class="assign-results-text card-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/javascript" src="theme.js"></script>
+    <script type="module">
+
+        //import js from other files
+        import { FinanceCalculator } from "./finance-calculator.js";
+        import { Validator } from "./validator.js";
+
+        //sets id to todays date
+        document.getElementById("today").innerHTML = new Date().toLocaleDateString("en-US");
+        
+        //onclick function for calculate button
+        document.getElementById("btnCalculate").onclick = function() 
+        {
+            // user input values
+            let monthlyPayment = document.getElementById("txtMonthlyPayment").value;
+            console.log(`Monthly payment amount is $${monthlyPayment}`); 
+
+            let rate = document.getElementById("txtYearlyRate").value;
+            console.log(`Interest rate is ${rate}%`); 
+            
+            let years = document.getElementById("listNumOfYears").value;
+            console.log(`Years of payment is ${years}`);
+
+            //error log results binded
+            let errorLogEl = document.getElementById("errorLog");
+
+
+            //new monthly payment validator class
+            let monthlyPaymentValidator = new Validator("Monthly Payment", monthlyPayment);
+
+            // Adding required fields for monthlyPayment.
+            monthlyPaymentValidator.addRequiredField();
+            monthlyPaymentValidator.addRequiredFloatField();
+            monthlyPaymentValidator.addFloatMinField(100);
+
+            //new interest rate validator class
+            let rateValidator = new Validator("Interest Rate", rate)
+
+            //required fields for interest rate
+            rateValidator.addRequiredField();
+            rateValidator.addRequiredFloatField();
+            rateValidator.addFloatMaxField(100);
+
+            //error log
+            let errorLog = [];
+
+            //push error messages to error log
+            if (!monthlyPaymentValidator.validate()) {
+                for (let msg of monthlyPaymentValidator.messages)
+                {
+                    errorLog.push(msg);
+                }
+            }
+
+            //push error messages to error log        
+            if (!rateValidator.validate()) {
+                for (let msg of rateValidator.messages)
+                {
+                    errorLog.push(msg);
+                }
+            }
+
+            // If validators are valid(true), then produce future value. If invalid(false), display error log.
+            if (rateValidator.validate() && monthlyPaymentValidator.validate()) {
+                errorLogEl.innerHTML = "";
+                let futureValue = FinanceCalculator.calculateFutureValue(monthlyPayment, rate, years);
+                let toCurrency = FinanceCalculator.convertToCurrency(futureValue);
+                document.getElementById("futureValue").innerHTML =  `The future value is ${toCurrency}`;
+            } else {
+
+                //clear error log
+                errorLogEl.innerHTML = "";
+
+                //create and loop over errorLog
+                let errorLogMessage = `<ul>`;
+                for (let message of errorLog) {
+                    errorLogMessage += `<li>${message}</li>`;
+                }
+
+                //close list.
+                errorLogMessage += `</ul>`;
+
+                //bind list to errorLogEl.innerHTML.
+                errorLogEl.innerHTML = errorLogMessage;
+            }
+            
+        }   
+
+
+
+    </script>
+</body>
+</html>
+
