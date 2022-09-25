@@ -1,0 +1,69 @@
+<!--
+==============================================
+; Title: Assignment 7.2 What-a-Book App
+; Author: Professor Richard Krasso
+; Modified by: Chad ONeal
+; Date: 09/23/2022
+; Description: XML for what-a-book app
+==============================================
+-->
+
+
+ <!-- books data -->
+ <books>
+
+    <!-- The Hobbit -->
+    <book>
+        <isbn>9780345339683</isbn>        
+        <title>The Hobbit or There and Back Again</title>
+        <description>N/A</description>
+        <pages>287</pages>
+        <authors>J.R.R. Tolkien</authors>
+    </book>
+
+    <!-- The Fellowship -->
+    <book>
+        <isbn>9780261103573</isbn>
+        <title>The Fellowship of the Ring</title>
+        <description>First part of the Lord of the Rings</description>
+        <pages>416</pages>
+        <authors>J.R.R. Tolkien</authors>
+    </book>
+
+    <!-- The Towers -->
+    <book>
+        <isbn>9780261102361</isbn>
+        <title>The Two Towers</title>
+        <description>Being the second part of the Lord of the Rings</description>
+        <pages>442</pages>
+        <authors>J.R.R. Tolkien</authors>
+    </book>
+
+    <!-- The Return -->
+    <book>
+        <isbn>9780261102378</isbn>
+        <title>The Return of the King</title>
+        <description>Being the third part of the Lord of the Rings</description>
+        <pages>556</pages>
+        <authors>J.R.R. Tolkien</authors>
+    </book>
+
+    <!-- Dune -->
+    <book>
+        <isbn>9780593099322</isbn>
+        <title>Dune: Deluxe Edition</title>
+        <description>N/A</description>
+        <pages>688</pages>
+        <authors>Frank Herbert</authors>
+    </book>
+
+    <!-- Catcher -->
+    <book>
+        <isbn>9780316769532</isbn>
+        <title>The Catcher and the Rye</title>
+        <description>N/A</description>
+        <pages>277</pages>
+        <authors>J.D. Salinger</authors>
+    </book>
+
+</books>
